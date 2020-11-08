@@ -1,8 +1,11 @@
-﻿using System;
+﻿using DataAccess.Data;
+using DataAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +28,17 @@ namespace Uppgift2.database
         public CustomerPage()
         {
             this.InitializeComponent();
+            LoadCustomersAsync().GetAwaiter();
+        }
+        private async Task LoadCustomersAsync()
+        {
+            cmbCustomers.ItemsSource = await SqliteContext.GetCustomerNames();
+        }
+
+        private async void CreateCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            await SqliteContext.CreateCustomerAsync(new Customer { Name = "Berka" + Guid.NewGuid().ToString() });
+            await LoadCustomersAsync();
         }
     }
 }

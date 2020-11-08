@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataAccess.Models;
+using DataAccess.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,10 +24,13 @@ namespace Uppgift2.database
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private IEnumerable<Issue> issues { get; set; }
+
         public MainPage()
         {
             this.InitializeComponent();
         }
+
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
@@ -44,9 +49,6 @@ namespace Uppgift2.database
 
                 switch (item.Tag.ToString())
                 {
-                    case "NewPage":
-                        ContentFrame.Navigate(typeof(NewPage));
-                        break;
                     case "IssuePage":
                         ContentFrame.Navigate(typeof(IssuePage));
                         break;

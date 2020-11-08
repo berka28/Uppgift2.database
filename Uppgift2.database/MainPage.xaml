@@ -11,7 +11,6 @@
     <Grid>
         <NavigationView x:Name="NavView" Loaded="NavView_Loaded" SelectionChanged="NavView_SelectionChanged" >
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Add" Content="New Issue" Tag="NewPage" />
                 <NavigationViewItem Icon="List" Content="Issues" Tag="IssuePage" />
                 <NavigationViewItem Icon="People" Content="Customers" Tag="CustomerPage" />
             </NavigationView.MenuItems>

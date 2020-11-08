@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using DataAccess.Data;
+using DataAccess.Models;
 
 namespace Uppgift2.database
 {
@@ -30,6 +32,9 @@ namespace Uppgift2.database
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            DataAccess.Data.SettingsContext.GetSettingsInformation();
+            DataAccess.Data.SqliteContext.UseSQLite();
         }
 
         /// <summary>

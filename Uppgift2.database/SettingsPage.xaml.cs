@@ -1,10 +1,14 @@
-﻿using System;
+﻿using DataAccess.Data;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +29,13 @@ namespace Uppgift2.database
         public SettingsPage()
         {
             this.InitializeComponent();
+            LoadStatusAsync().GetAwaiter();
+        }
+
+        private async Task LoadStatusAsync()
+        {
+            cmbStatus.ItemsSource = await SettingsContext.GetStatus();
+            
         }
     }
 }
